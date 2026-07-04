@@ -21,6 +21,12 @@ public class ServletExController {
     public void error404(HttpServletResponse response) throws IOException {
         response.sendError(404, "404 오류!"); // "404 오류!" 같은 메시지는 현재 default로는 숨기도록 되어 있지만, 옵션을 변경하면 꺼낼 수도 있음
     }
+
+    @GetMapping("/error-400")
+    public void error400(HttpServletResponse response) throws IOException {
+        response.sendError(400, "400 오류!"); // "404 오류!" 같은 메시지는 현재 default로는 숨기도록 되어 있지만, 옵션을 변경하면 꺼낼 수도 있음
+    }
+
     @GetMapping("/error-500")
     public void error500(HttpServletResponse response) throws IOException {
         response.sendError(500);
