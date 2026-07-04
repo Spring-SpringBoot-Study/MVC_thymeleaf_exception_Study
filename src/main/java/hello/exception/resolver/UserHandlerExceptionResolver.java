@@ -25,7 +25,7 @@ public class UserHandlerExceptionResolver implements HandlerExceptionResolver
                 log.info("UserException resolver to 400");
 
                 String acceptHeader = request.getHeader("accept");
-                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 
                 if ("application/json".equals(acceptHeader)) {
                     Map<String, Object> errorResult = new HashMap<>();
