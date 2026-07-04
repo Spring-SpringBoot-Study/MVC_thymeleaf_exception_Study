@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -47,6 +48,14 @@ public class ApiExceptionController {
     @GetMapping("/api/response-status-ex2")
     public String responseStatusEx2() {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad", new IllegalArgumentException());
+    }
+
+    // 타입이 안 맞는 등의 바인딩 에러가 날 경우, TypeMismatchException이 발생
+    // Integer data에 문자를 입력하면, TypeMismatchException이 발생함.
+    // http://localhost:8080/api/default-handler-ex?data=hello 로 GET 요청을 보내면 에러 -> 자동으로 500이 아닌 400으로 처리함
+    @GetMapping("/api/default-handler-ex")
+    public String defaultException(@RequestParam Integer data) {
+        return "ok";
     }
 
     @Data
